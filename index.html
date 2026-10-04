@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luca Fazi - Graphic Designer & Print Specialist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0d10;
+      --card-bg: #14171d;
+      --border: #222733;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --primary: #3b82f6;
+      --primary-glow: rgba(59, 130, 246, 0.15);
+      --container: 1040px;
+    }
+
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --primary: #2563eb;
+      --primary-glow: rgba(37, 99, 235, 0.1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { background-color: var(--bg); color: var(--text); line-height: 1.6; transition: background-color 0.25s, color 0.25s; }
+    .container { max-width: var(--container); margin: 0 auto; padding: 0 1.5rem; }
+
+    /* Header & Nav */
+    header { position: sticky; top: 0; backdrop-filter: blur(12px); background: rgba(11, 13, 16, 0.85); border-bottom: 1px solid var(--border); z-index: 100; }
+    [data-theme="light"] header { background: rgba(248, 250, 252, 0.85); }
+    nav { display: flex; justify-content: space-between; align-items: center; height: 4.2rem; }
+    .logo { font-weight: 700; font-size: 1.25rem; letter-spacing: -0.5px; text-decoration: none; color: var(--text); }
+    .logo span { color: var(--primary); }
+    .cmyk-dots { display: inline-flex; gap: 3px; margin-left: 4px; vertical-align: middle; }
+    .cmyk-dot { width: 5px; height: 5px; border-radius: 50%; display: inline-block; }
+    .c-c { background: #00e5ff; }
+    .c-m { background: #ff007f; }
+    .c-y { background: #ffea00; }
+    .c-k { background: #111; border: 1px solid #444; }
+
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--text-muted); font-weight: 500; font-size: 0.95rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .theme-toggle { background: var(--card-bg); border: 1px solid var(--border); color: var(--text); padding: 0.4rem 0.85rem; border-radius: 999px; cursor: pointer; font-size: 0.85rem; font-weight: 600; }
+
+    /* Hero */
+    .hero { padding: 5.5rem 0 3.5rem; display: flex; flex-direction: column; gap: 1.4rem; }
+    .status-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--primary-glow); color: var(--primary); border: 1px solid var(--primary); padding: 0.35rem 0.9rem; border-radius: 999px; font-size: 0.85rem; font-weight: 600; width: fit-content; }
+    .status-pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--primary); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+    .hero h1 { font-size: clamp(2.4rem, 5vw, 3.8rem); line-height: 1.15; font-weight: 700; letter-spacing: -1px; }
+    .hero p { font-size: 1.15rem; color: var(--text-muted); max-width: 680px; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem; }
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; justify-content: center; padding: 0.75rem 1.6rem; border-radius: 8px; font-weight: 600; text-decoration: none; font-size: 0.95rem; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; border: none; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--primary); color: #fff; box-shadow: 0 4px 14px var(--primary-glow); }
+    .btn-outline { background: var(--card-bg); border: 1px solid var(--border); color: var(--text); }
+
+    /* Sections */
+    section { padding: 4.5rem 0; border-top: 1px solid var(--border); }
+    .section-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.4rem; letter-spacing: -0.5px; }
+    .section-sub { color: var(--text-muted); margin-bottom: 2.5rem; font-size: 0.95rem; }
+
+    /* Timeline */
+    .timeline { display: flex; flex-direction: column; gap: 1.6rem; border-left: 2px solid var(--border); padding-left: 1.8rem; margin-left: 0.5rem; }
+    .timeline-item { position: relative; }
+    .timeline-dot { position: absolute; left: -2.4rem; top: 0.25rem; width: 14px; height: 14px; border-radius: 50%; background: var(--card-bg); border: 3px solid var(--primary); }
+    .timeline-badge { font-size: 0.8rem; color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.2rem; }
+    .timeline-title { font-size: 1.15rem; font-weight: 600; }
+    .timeline-place { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.4rem; }
+    .timeline-desc { color: var(--text-muted); font-size: 0.95rem; }
+
+    /* Skills */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .skill-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 1.6rem; }
+    .skill-card h3 { font-size: 1.15rem; margin-bottom: 1rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag { background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border); color: var(--text); padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.85rem; font-weight: 500; }
+    [data-theme="light"] .tag { background: #f1f5f9; }
+
+    /* Projects */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 1.5rem; }
+    .project-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: transform 0.2s, border-color 0.2s; }
+    .project-card:hover { transform: translateY(-3px); border-color: var(--primary); }
+    .project-preview { height: 170px; background: linear-gradient(135deg, #1e293b, #0f172a); display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 0.9rem; border-bottom: 1px solid var(--border); }
+    .project-body { padding: 1.5rem; }
+    .project-body h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+    .project-body p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; }
+
+    /* Contact Box */
+    .contact-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 2.8rem 2rem; text-align: center; max-width: 620px; margin: 0 auto; }
+    .contact-card h3 { font-size: 1.7rem; margin-bottom: 0.5rem; font-weight: 700; }
+    .contact-card p { color: var(--text-muted); margin-bottom: 1.8rem; font-size: 0.95rem; }
+    .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--primary); color: #fff; padding: 0.75rem 1.25rem; border-radius: 8px; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 14px rgba(0,0,0,0.3); opacity: 0; pointer-events: none; transition: opacity 0.3s; z-index: 200; }
+    .toast.show { opacity: 1; }
+
+    footer { text-align: center; padding: 2.5rem 0; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">
+          LF<span>.</span>
+          <span class="cmyk-dots">
+            <span class="cmyk-dot c-c"></span>
+            <span class="cmyk-dot c-m"></span>
+            <span class="cmyk-dot c-y"></span>
+            <span class="cmyk-dot c-k"></span>
+          </span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#percorso">Percorso</a></li>
+          <li><a href="#competenze">Competenze</a></li>
+          <li><a href="#progetti">Progetti</a></li>
+          <li><a href="https://instagram.com/lucaa.fazi" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="#contatti">Contatti</a></li>
+          <li><button class="theme-toggle" id="themeBtn">🌓 Tema</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero" style="border-top: none;">
+      <div class="status-badge">
+        <span class="status-pulse"></span>
+        Attualmente in Editoria · Amazon (Torrazza Piemonte)
+      </div>
+      <h1>Luca Fazi</h1>
+      <p>Operatore grafico di stampa offset & Graphic Designer. Unisco la precisione tecnica dell'editoria e della produzione cartacea alla creatività della progettazione grafica moderna.</p>
+      <div class="hero-actions">
+        <a href="#contatti" class="btn btn-primary">Contattami</a>
+        <a href="#progetti" class="btn btn-outline">Esplora Lavori</a>
+      </div>
+    </section>
+
+    <!-- Percorso -->
+    <section id="percorso">
+      <h2 class="section-title">Esperienze & Formazione</h2>
+      <p class="section-sub">Il mio percorso professionale tra produzione industriale e studio tecnico.</p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-badge">In corso</div>
+          <div class="timeline-title">Operatore di Produzione Editoriale</div>
+          <div class="timeline-place">Amazon · Torrazza Piemonte</div>
+          <p class="timeline-desc">Gestione dei flussi e delle procedure operative per la stampa editoriale su richiesta ad alti volumi.</p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-badge">In corso</div>
+          <div class="timeline-title">Diploma di Maturità Grafica (5° Anno)</div>
+          <div class="timeline-place">ITIS Grafico e Comunicazione</div>
+          <p class="timeline-desc">Specializzazione in tecnologie di prestampa, comunicazione visiva, chimica dei supporti cartacei e progettazione editoriale.</p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-badge">Stage · 10 Mesi</div>
+          <div class="timeline-title">Grafico di Personalizzazione & Merchandising</div>
+          <div class="timeline-place">Publiworld · Torino</div>
+          <p class="timeline-desc">Elaborazione file esecutivi di stampa per gadget, abbigliamento personalizzato e campionari promozionali con relative prove colore.</p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-badge">Qualifica Professionale</div>
+          <div class="timeline-title">Operatore Grafico (Graphic Design)</div>
+          <div class="timeline-place">Corso di Formazione Professionale</div>
+          <p class="timeline-desc">Studio della progettazione visiva, teoria del colore, branding, tipografia e suite Adobe (Illustrator, InDesign, Photoshop).</p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-badge">Qualifica Professionale</div>
+          <div class="timeline-title">Operatore Grafico di Stampa (Offset)</div>
+          <div class="timeline-place">Corso di Formazione Professionale</div>
+          <p class="timeline-desc">Conduzione macchine da stampa piana/offset, preparazione inchiostri e bagnatura, montaggio lastre e regolazione del registro.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Competenze -->
+    <section id="competenze">
+      <h2 class="section-title">Competenze Tecniche</h2>
+      <p class="section-sub">Dalla macchina da stampa alla tavoletta grafica.</p>
+
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3>Stampa & Finitura</h3>
+          <div class="tags">
+            <span class="tag">Stampa Offset</span>
+            <span class="tag">Editoria Industriale</span>
+            <span class="tag">Gestione CMYK & Pantoni</span>
+            <span class="tag">Controllo Registro & Densità</span>
+            <span class="tag">CTP & Lastre</span>
+            <span class="tag">Taglio & Rifilatura</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3>Design & Prestampa</h3>
+          <div class="tags">
+            <span class="tag">Adobe InDesign</span>
+            <span class="tag">Adobe Illustrator</span>
+            <span class="tag">Adobe Photoshop</span>
+            <span class="tag">File Esecutivi</span>
+            <span class="tag">Personalizzazione Gadget</span>
+            <span class="tag">Griglie Editoriali</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3>Metodo & Produzione</h3>
+          <div class="tags">
+            <span class="tag">Flussi ad Alti Volumi</span>
+            <span class="tag">Precisione Esecutiva</span>
+            <span class="tag">Problem Solving Tecnico</span>
+            <span class="tag">Team Working</span>
+            <span class="tag">Controllo Qualità di Reparto</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Progetti -->
+    <section id="progetti">
+      <h2 class="section-title">Progetti & Lavori</h2>
+      <p class="section-sub">Esempi di applicazione pratica tra stampa, merchandising e impaginazione.</p>
+
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-preview">Personalizzazione & Gadget</div>
+          <div class="project-body">
+            <h3>Merchandising & Abbigliamento</h3>
+            <p>Esecutivi di stampa e rendering per personalizzazione di t-shirt, accessori e gadget aziendali per Publiworld.</p>
+            <div class="tags">
+              <span class="tag">Vettoriale</span>
+              <span class="tag">Personalizzazione</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-preview">Editoria & Composizione</div>
+          <div class="project-body">
+            <h3>Progetto Grafico Editoriale</h3>
+            <p>Impaginato multi-pagina con studio accurato della gabbia di testo, gerarchie di lettura e scelta dei caratteri.</p>
+            <div class="tags">
+              <span class="tag">InDesign</span>
+              <span class="tag">Tipografia</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-preview">Controllo Offset & Cromatico</div>
+          <div class="project-body">
+            <h3>Prove di Stampa & Retinatura</h3>
+            <p>Campione di calibratura colore, gestione punto retino e confronto di resa cromatica su diversi tipi di carta.</p>
+            <div class="tags">
+              <span class="tag">Offset</span>
+              <span class="tag">Colorimetria</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contatti -->
+    <section id="contatti">
+      <div class="contact-card">
+        <h3>Mettiamoci in contatto</h3>
+        <p>Per collaborazioni, richieste grafiche o opportunità lavorative a Torino e provincia.</p>
+
+        <div class="contact-links">
+          <button class="btn btn-primary" id="copyMailBtn">
+            📋 Copia: lcfazi@gmail.com
+          </button>
+          <a href="mailto:lcfazi@gmail.com" class="btn btn-outline">
+            ✉ Invia Email
+          </a>
+          <a href="https://instagram.com/lucaa.fazi" target="_blank" rel="noopener" class="btn btn-outline">
+            📸 Instagram (@lucaa.fazi)
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast">Indirizzo email copiato negli appunti!</div>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Luca Fazi · Portfolio & Curriculum Vitae Online</p>
+    </div>
+  </footer>
+
+  <script>
+    // Theme toggle
+    const themeBtn = document.getElementById('themeBtn');
+    let isDark = true;
+    themeBtn.addEventListener('click', () => {
+      isDark = !isDark;
+      document.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    });
+
+    // Copy Email & Toast
+    const copyMailBtn = document.getElementById('copyMailBtn');
+    const toast = document.getElementById('toast');
+    const emailStr = 'lcfazi@gmail.com';
+
+    copyMailBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(emailStr).then(() => {
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2500);
+      });
+    });
+  </script>
+</body>
+</html>
